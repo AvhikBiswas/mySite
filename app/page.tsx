@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import {
@@ -21,6 +21,7 @@ import {
   Cloud,
   Workflow
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -47,16 +48,20 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (sectionId: string) => {
+    if (typeof document !== "undefined") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      setIsMenuOpen(false);
     }
-    setIsMenuOpen(false);
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const techStack = [
@@ -96,7 +101,7 @@ export default function Home() {
                         background-color: #000000;
                     }
                     .monochrome-pattern {
-                        background-image: 
+                        background-image:
                             linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.01) 25%),
                             linear-gradient(-45deg, transparent 25%, rgba(255,255,255,0.01) 25%),
                             linear-gradient(45deg, rgba(255,255,255,0.01) 75%, transparent 75%),
@@ -160,7 +165,7 @@ export default function Home() {
           <div
             className="h-full bg-white transition-all duration-300"
             style={{
-              width: `${Math.min((scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100)}%`
+              width: `${typeof window !== "undefined" ? Math.min((scrollY / (document.body.scrollHeight - window.innerHeight)) * 100, 100) : 0}%`
             }}
           ></div>
         </div>
@@ -184,7 +189,7 @@ export default function Home() {
 
                 <div className="space-y-4 relative">
                   <div className="text-lg md:text-xl text-gray-300 font-light border-l-2 border-gray-700 pl-4">
-                    <span className="block mb-2">"Building, Breaking, Finding Meaning"</span>
+                    <span className="block mb-2">{"Building, Breaking, Finding"}</span>
                     <div className="flex items-center gap-3 text-sm text-gray-500">
                       <Terminal size={16} />
                       <span>- AI, while debugging its own existence</span>
@@ -194,7 +199,7 @@ export default function Home() {
 
                 <div className="flex items-center gap-6">
                   <button
-                    onClick={() => window.open('https://cal.com/avhikbiswas', '_blank')}
+                    onClick={() => typeof window !== "undefined" && window.open('https://cal.com/avhik-biswas/say-hi', '_blank')}
                     className="rounded-button whitespace-nowrap bg-white text-black px-8 py-3 text-lg font-medium hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 cursor-pointer flex items-center gap-2"
                   >
                     <Calendar size={20} />
@@ -239,7 +244,7 @@ export default function Home() {
               <div className="relative">
                 <div className="aspect-square overflow-hidden rounded-lg bg-gradient-to-br from-gray-900 to-black border border-gray-800">
                   <div className="w-full h-full flex items-center justify-center">
-                    <img src="/avhik.png"  alt="Avhik Biswas"  width={700} />
+                    <Image src="/avhik.png" alt="Avhik Biswas" width={700} height={700} />
                   </div>
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 border border-gray-700 rounded-lg"></div>
@@ -299,7 +304,7 @@ export default function Home() {
                 {/* Experience 2 */}
                 <div className="relative flex items-center">
                   <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-black z-10"></div>
-                  <div className="ml-16 md:ml-0 md:w-1/2 md:ml-auto md:pl-8">
+                  <div className="ml-16  md:w-1/2 md:ml-auto md:pl-8">
                     <div className="bg-gray-950/50 border border-gray-800 p-6 rounded-lg hover:border-gray-600 hover:bg-gray-950/80 transition-all cursor-pointer">
                       <div className="text-sm text-gray-500 mb-2">2022 - 2023</div>
                       <h3 className="text-xl font-bold mb-2 text-white">Software Engineering Intern</h3>
@@ -402,7 +407,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="py-20 px-6 bg-gray-950/30">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">Let's Connect</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">{"Let's Connect"}</h2>
             <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
               I am always interested in discussing new opportunities, collaborating on projects,
               or just having a conversation about technology and software engineering.
@@ -410,7 +415,7 @@ export default function Home() {
             {/* Cal.com Integration */}
             <div className="mb-12">
               <button
-                onClick={() => window.open('https://cal.com/avhikbiswas', '_blank')}
+                onClick={() => typeof window !== "undefined" && window.open('https://cal.com/avhikbiswas', '_blank')}
                 className="rounded-button whitespace-nowrap bg-white text-black px-12 py-6 text-xl font-semibold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 cursor-pointer inline-flex items-center gap-3"
               >
                 <Calendar size={24} />
