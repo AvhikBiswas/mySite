@@ -39,20 +39,13 @@ export default function Home() {
             Avhik Biswas
           </h1>
 
-          <p className="text-lg md:text-xl text-zinc-400 font-light max-w-lg mx-auto leading-relaxed">
-            Software Engineer from West Bengal, India
-          </p>
         </div>
 
         {/* Current Work */}
-        <div className="p-4 rounded-2xl border border-zinc-900 bg-zinc-950/40 backdrop-blur-md max-w-md mx-auto space-y-2">
+        <div className="p-4 rounded-2xl border border-zinc-900 bg-zinc-950/40 backdrop-blur-md max-w-md mx-auto">
           <div className="flex items-center justify-center gap-2 text-sm text-zinc-300">
             <Briefcase size={16} className="text-purple-400" />
-            <span>Software Engineer at <span className="font-semibold text-white">HomeAbroad Inc.</span></span>
-          </div>
-          <div className="text-xs text-zinc-500 flex items-center justify-center gap-1.5">
-            <MapPin size={12} />
-            <span>US Remote</span>
+            <span>Software Engineer at <span className="font-semibold text-white">HomeAbroad Inc.</span> (US Remote)</span>
           </div>
         </div>
 
